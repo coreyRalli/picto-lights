@@ -1,0 +1,17 @@
+{
+  "name": "picto-lights",
+  "version": "1.0.0",
+  "description": "Change one or more LIFX bulb(s) to the dominant colour of a given image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Corey Ralli",
+  "license": "MIT",
+  "dependencies": {
+    "file-type": "^6.1.0",
+    "get-pixels": "^3.3.0",
+    "get-rgba-palette": "^2.0.1",
+    "node-fetch": "^1.7.3"
+  }
+}
