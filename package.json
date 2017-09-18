@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Corey Ralli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coreyRalli/picto-lights"
+  },
   "license": "MIT",
   "dependencies": {
     "file-type": "^6.1.0",
