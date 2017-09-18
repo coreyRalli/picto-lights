@@ -35,14 +35,6 @@ async function setLightColorAsync(color, token, selector, brightness, duration) 
                 duration: duration
             })
         });
-        
-        /*
-
-        if (response.status != 200) {
-            throw 'Something went wrong with request';
-        }
-
-        */
     }
     catch (ex) {
         throw new Error(ex);
@@ -51,8 +43,6 @@ async function setLightColorAsync(color, token, selector, brightness, duration) 
 
 async function validateColorAsync(color, token) {
     try {
-        console.log(color);
-        
         const response = await fetch("https://api.lifx.com/v1/color?string=" + color, {
             headers: {
                 'Authorization' : 'Bearer ' + token 
@@ -60,7 +50,6 @@ async function validateColorAsync(color, token) {
         });
 
         const json = await response.json();
-        console.log(json);
 
         if (response.status != 200) {
             throw "Color or request is not valid";
