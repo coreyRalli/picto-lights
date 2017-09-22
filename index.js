@@ -3,17 +3,23 @@ const fileType = require('file-type');
 const getPixels = require('get-pixels');
 const rgbPalette = require('get-rgba-palette');
 
-async function pictoLightsAsync(url, lifxtoken, options) {
-    let opt = (typeof options == "undefined") ? {} : options;
+async function pictoLightsAsync(obj, lifxtoken, options) {
+    const opt = (typeof options == "undefined") ? {} : options;
     if (typeof opt.selector == "undefined")
         opt.selector = "all";
     if (typeof opt.brightness == "undefined")
-        opt.brightness = 1.0
+        opt.brightness = 0.5
     if (typeof opt.duration == "undefined")
         opt.duration = 1.0
-    
-    const imageBuffer = await downloadImageAsync(url);
-    const pixelData = await getPixelDataAsync(imageBuffer);
+
+    let b;
+    if (obj instanceof Buffer) {
+        b = obj
+    } else {
+        b = await downloadImageAsync(obj);
+    }
+
+    const pixelData = await getPixelDataAsync(b);
     const dominantColor = await getDominantColorAsync(pixelData);
 
     await validateColorAsync(dominantColor, lifxtoken);
@@ -35,6 +41,10 @@ async function setLightColorAsync(color, token, selector, brightness, duration) 
                 duration: duration
             })
         });
+
+        if (response.status != 200 && response.status != 207) {
+            throw ("Somthing went wrong while making request");
+        }
     }
     catch (ex) {
         throw new Error(ex);

@@ -1,14 +1,14 @@
 # Picto-Lights
-### Change one or more [Lifx](https://www.lifx.com/) bulb(s) to the dominant colour of a given image.
+### Change one or more [LIFX](https://www.lifx.com/) bulb(s) to the dominant colour of a given image.
 
 ## Useage
+```require('picto-lights')(img, LIFXToken, options)```
 
-```javascript
-const pictolights = require('picto-lights');
+```img``` (string or Buffer) - URL or Buffer object of the image.
 
-pictolights("http://url-of-image-here", "your-lifx-token", options)
-.then(() => {  })
-```
+```LIFXToken``` (string) - Your LIFX access token, generated through the [account settings](https://cloud.lifx.com/settings) page on the LIFX site.
+
+```options``` (Options) - An object containing optional parameters (see below).
 
 #### Options
 
@@ -17,6 +17,15 @@ pictolights("http://url-of-image-here", "your-lifx-token", options)
 ```brightness``` (double) - The brightness of the bulb. Defaults to 0.5
 
 ```duration``` (double) - How long (in seconds) to transition when going from off to on. Default is 1.0
+
+## Example
+
+```javascript
+const pictolights = require('picto-lights');
+
+pictolights("http://url-of-image-here", "your-lifx-token", options)
+.then(() => {  })
+```
 
 Due to the use of async/await, requires Node v7.6+.
 
